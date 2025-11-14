@@ -2,7 +2,10 @@ Hospital Costs & Mortality Analysis (SUPPORT Dataset)
 
 Comprehensive statistical analysis of hospital total costs and in-hospital mortality using the SUPPORT dataset.
 Includes data cleaning, exploratory analysis, regression modeling, logistic modeling, visualizations, and a reproducible R Markdown report.
+
 📁 Project Structure
+
+```bash
 hospital-costs-and-mortality-R/
 │
 ├── 01_data/
@@ -38,8 +41,7 @@ hospital-costs-and-mortality-R/
 │
 ├── README.md
 └── .gitignore
-
-
+```
 🔍 Objective
 
 This project investigates:
@@ -54,10 +56,7 @@ How well regression and logistic models perform
 
 🧹 1. Data Cleaning
 
-Performed in:
-
-02_scripts/01_load_and_clean.R
-
+Script: 02_scripts/01_load_and_clean.R
 
 Tasks include:
 
@@ -71,11 +70,11 @@ Saving a clean CSV version
 
 📈 2. Exploratory Data Analysis
 
-Performed in:
+Scripts:
 
 02_scripts/02_analysis.R
-02_scripts/03_visualizations.R
 
+02_scripts/03_visualizations.R
 
 Includes:
 
@@ -90,31 +89,26 @@ Cost patterns across demographics and disease classes
 Outputs saved in:
 
 03_results/
+
 04_figures/
 
-📉 3. Regression Modeling (Continuous Cost)
+📉 3. Regression Modeling (Total Cost)
 
-Script:
-
-02_scripts/04_regression_models.R
-
+Script: 02_scripts/04_regression_models.R
 
 Models include:
 
 Linear regression with clinical predictors
 
-Model comparison (AIC, adj. R²)
+Interaction models
+
+Model comparison (AIC, adjusted R²)
 
 Residual diagnostics
 
-Interpretation of significant predictors
-
 ⚕️ 4. Logistic Regression (Mortality)
 
-Script:
-
-02_scripts/05_logistic_models.R
-
+Script: 02_scripts/05_logistic_models.R
 
 Outputs include:
 
@@ -128,12 +122,11 @@ Model accuracy and sensitivity
 
 📊 5. Final Report
 
-Reproducible R Markdown document:
+Reproducible R Markdown:
 
 05_reports/final_report.Rmd
 
-
-Contains:
+Includes:
 
 Introduction
 
@@ -143,7 +136,7 @@ Statistical models
 
 Visualizations
 
-Interpretation of results
+Interpretation
 
 Conclusions
 
@@ -153,12 +146,9 @@ git clone https://github.com/YOUR_USERNAME/hospital-costs-and-mortality-R.git
 cd hospital-costs-and-mortality-R
 
 2️⃣ Open RStudio
-
-From the menu:
-
 File → Open Project → hospital-costs-and-mortality-R.Rproj
 
-3️⃣ Install required R packages
+3️⃣ Install required packages
 install.packages(c("tidyverse", "haven", "GGally", "pROC", "broom"))
 
 4️⃣ Run scripts in order
