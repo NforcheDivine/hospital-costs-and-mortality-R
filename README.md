@@ -1,27 +1,229 @@
-# 🏥 Hospital Costs & In-Hospital Mortality — R Project
+📊 Hospital Costs & Mortality Analysis (SUPPORT Dataset)
 
-This project analyzes hospital costs and in-hospital mortality using the SUPPORT dataset.
+A complete statistical analysis project using R, focusing on predicting hospital costs (continuous outcome) and in-hospital mortality (binary outcome) using the SUPPORT dataset.
 
-- Outcome 1 (continuous): total hospital cost (`totcst`)
-- Outcome 2 (binary): in-hospital death (`hospdead`)
-- Predictors include: age, sex, disease class (`dzclass`), number of comorbidities (`num_co`), and years of education (`edu`).
+This project demonstrates:
 
-## 🔧 Files
+Data cleaning and preprocessing
 
-- `scripts/01_load_and_clean.R` — loads `support.dta`, selects key variables, saves `results/clean_data.csv`
-- `scripts/02_analysis.R` — computes basic summary statistics and saves them to `results/tables/`
-- `scripts/03_visualizations.R` — creates basic plots and saves them to `results/figures/`
-- `requirements.R` — installs the required R packages
+Exploratory data analysis
 
-## ▶️ How to Run
+Statistical modeling
 
-In R:
+Multiple linear regression
 
-```r
-# set working directory to the project folder
-setwd("C:/Users/HOME/PycharmProjects/hospital-costs-and-mortality-R")
+Interaction terms
 
-source("requirements.R")               # install packages (first time)
-source("scripts/01_load_and_clean.R")  # create cleaned data
-source("scripts/02_analysis.R")        # create summary table
-source("scripts/03_visualizations.R")  # create figures
+Logistic regression
+
+Odds ratios + confidence intervals
+
+Model diagnostics
+
+ROC curve + AUC
+
+Reproducible R project structure
+
+📁 Project Structure
+hospital-costs-and-mortality-R/
+│
+├── data/
+│   └── README_DATA.txt       # dataset not included
+│
+├── scripts/
+│   ├── 01_load_and_clean.R
+│   ├── 02_analysis.R
+│   ├── 03_visualizations.R
+│   ├── 04_regression_models.R
+│   └── 05_logistic_models.R
+│
+├── results/
+│   ├── clean_data.csv
+│   ├── tables/
+│   │   ├── model1_results.csv
+│   │   ├── model2_results.csv
+│   │   ├── model3_results.csv
+│   │   ├── model4_results.csv
+│   │   ├── logit1_results.csv
+│   │   ├── logit2_results.csv
+│   │   ├── logit_odds_ratios.csv
+│   │   ├── logit_confusion_matrix.csv
+│   │   ├── logit_performance.csv
+│   │   └── logit_auc.csv
+│   └── figures/
+│       ├── model3_residuals.png
+│       └── logit_ROC.png
+│
+├── reports/
+│   └── final_report.Rmd       # optional
+│
+├── README.md
+└── .gitignore
+
+🧼 Data Cleaning
+
+Performed in:
+
+scripts/01_load_and_clean.R
+
+
+Steps include:
+
+Loading Stata file (support.dta)
+
+Selecting relevant variables:
+
+age, sex, dzclass, num_co, edu
+
+slos (length of stay)
+
+totcst (total cost)
+
+hospdead (in-hospital death)
+
+Removing missing values for essential variables
+
+Saving cleaned dataset to:
+
+results/clean_data.csv
+
+📈 Exploratory Data Analysis (EDA)
+
+Performed in:
+
+scripts/02_analysis.R
+
+
+Includes:
+
+Summary statistics
+
+Distribution of hospital costs
+
+Mortality rate
+
+Correlation structure
+
+Relationship plots between age, comorbidities, slos, and outcomes
+
+Results saved to:
+
+results/tables/summary_overall.csv
+
+🎨 Visualizations
+
+Generated in:
+
+scripts/03_visualizations.R
+
+
+Examples:
+
+Cost distribution by mortality
+
+Boxplots of costs by disease class
+
+Scatterplots
+
+Density plots
+
+📉 Linear Regression Models (Cost Prediction)
+
+Performed in:
+
+scripts/04_regression_models.R
+
+
+Models included:
+
+Model 1 — Simple Regression
+totcst ~ age
+
+Model 2 — Multiple Regression
+totcst ~ age + sex + edu + num_co
+
+Model 3 — Interaction Model
+totcst ~ age * num_co + sex + edu
+
+Model 4 — Adding Length of Stay
+totcst ~ age * num_co + sex + edu + slos
+
+Diagnostics
+
+Residuals vs fitted
+
+Normality of residuals
+
+Scale-location
+
+Leverage & Cook’s distance
+
+Saved to:
+
+results/figures/model3_residuals.png
+
+🔴 Logistic Regression Models (Mortality Prediction)
+
+Performed in:
+
+scripts/05_logistic_models.R
+
+
+Models:
+
+Model 1 — Simple logistic model
+hospdead ~ age
+
+Model 2 — Multiple logistic model
+hospdead ~ age + sex + dzclass + num_co + edu
+
+Outputs:
+
+Coefficients
+
+Odds ratios + 95% confidence intervals
+
+Confusion matrix
+
+Accuracy, sensitivity, specificity
+
+ROC curve
+
+AUC score
+
+Saved to:
+
+results/tables/logit_odds_ratios.csv
+results/tables/logit_confusion_matrix.csv
+results/tables/logit_performance.csv
+results/tables/logit_auc.csv
+results/figures/logit_ROC.png
+
+🧪 How to Reproduce the Analysis
+1️⃣ Clone the repo
+git clone https://github.com/NforcheDivine/hospital-costs-and-mortality-R.git
+cd hospital-costs-and-mortality-R
+
+2️⃣ Add the dataset (not included)
+
+Place the SUPPORT dataset (support.dta) inside:
+
+data/
+
+3️⃣ Run scripts in order:
+source("scripts/01_load_and_clean.R")
+source("scripts/02_analysis.R")
+source("scripts/03_visualizations.R")
+source("scripts/04_regression_models.R")
+source("scripts/05_logistic_models.R")
+
+
+All results will appear inside the results/ folder.
+
+🧑‍💻 Author
+
+Nforche Divine Ako
+📍 MSc Statistical Data Analysis – Ghent University
+💼 LinkedIn: https://www.linkedin.com/in/nforche-divine-ako-7a821889/
+
+📧 Email: nforchedivine@gmail.com
