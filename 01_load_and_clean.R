@@ -7,9 +7,18 @@ library(haven)
 # load data (Stata file)
 data <- read_dta("data/support.dta")
 
-# keep only variables we care about
+# keep only variables we care about (now including slos)
 data <- data %>%
-  select(age, sex, dzclass, edu, num_co, hospdead, totcst)
+  select(
+    age,
+    sex,
+    dzclass,
+    num_co,
+    edu,
+    slos,       # length of stay
+    totcst,
+    hospdead
+  )
 
 # drop rows with missing total cost
 data <- data %>% filter(!is.na(totcst))
