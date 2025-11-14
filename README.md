@@ -1,229 +1,187 @@
-📊 Hospital Costs & Mortality Analysis (SUPPORT Dataset)
+Hospital Costs & Mortality Analysis (SUPPORT Dataset)
 
-A complete statistical analysis project using R, focusing on predicting hospital costs (continuous outcome) and in-hospital mortality (binary outcome) using the SUPPORT dataset.
-
-This project demonstrates:
-
-Data cleaning and preprocessing
-
-Exploratory data analysis
-
-Statistical modeling
-
-Multiple linear regression
-
-Interaction terms
-
-Logistic regression
-
-Odds ratios + confidence intervals
-
-Model diagnostics
-
-ROC curve + AUC
-
-Reproducible R project structure
-
+Comprehensive statistical analysis of hospital total costs and in-hospital mortality using the SUPPORT dataset.
+Includes data cleaning, exploratory analysis, regression modeling, logistic modeling, visualizations, and a reproducible R Markdown report.
 📁 Project Structure
 hospital-costs-and-mortality-R/
 │
-├── data/
-│   └── README_DATA.txt       # dataset not included
+├── 01_data/
+│   └── README_DATA.txt               # dataset not included for licensing
 │
-├── scripts/
-│   ├── 01_load_and_clean.R
-│   ├── 02_analysis.R
-│   ├── 03_visualizations.R
-│   ├── 04_regression_models.R
-│   └── 05_logistic_models.R
+├── 02_scripts/
+│   ├── 01_load_and_clean.R           # import + preprocessing
+│   ├── 02_analysis.R                 # descriptive statistics
+│   ├── 03_visualizations.R           # plots and EDA graphs
+│   ├── 04_regression_models.R        # linear regression models (totcst)
+│   └── 05_logistic_models.R          # mortality logistic regression
 │
-├── results/
+├── 03_results/
 │   ├── clean_data.csv
-│   ├── tables/
-│   │   ├── model1_results.csv
-│   │   ├── model2_results.csv
-│   │   ├── model3_results.csv
-│   │   ├── model4_results.csv
-│   │   ├── logit1_results.csv
-│   │   ├── logit2_results.csv
-│   │   ├── logit_odds_ratios.csv
-│   │   ├── logit_confusion_matrix.csv
-│   │   ├── logit_performance.csv
-│   │   └── logit_auc.csv
-│   └── figures/
-│       ├── model3_residuals.png
-│       └── logit_ROC.png
+│   ├── model1_results.csv
+│   ├── model2_results.csv
+│   ├── model3_results.csv
+│   ├── logit1_results.csv
+│   ├── logit2_results.csv
+│   ├── logit_confusion_matrix.csv
+│   ├── logit_odds_ratios.csv
+│   ├── logit_performance.csv
+│   └── logit_auc.csv
 │
-├── reports/
-│   └── final_report.Rmd       # optional
+├── 04_figures/
+│   ├── model3_residuals.png
+│   ├── age_vs_cost.png
+│   ├── logit_ROC.png
+│   └── correlation_matrix.png
+│
+├── 05_reports/
+│   └── final_report.Rmd              # full reproducible analysis
 │
 ├── README.md
 └── .gitignore
 
-🧼 Data Cleaning
+
+🔍 Objective
+
+This project investigates:
+
+Factors influencing total hospital cost (continuous)
+
+Predictors of in-hospital mortality (binary)
+
+Which patient, disease, or severity features have the strongest impact
+
+How well regression and logistic models perform
+
+🧹 1. Data Cleaning
 
 Performed in:
 
-scripts/01_load_and_clean.R
+02_scripts/01_load_and_clean.R
 
 
-Steps include:
+Tasks include:
 
-Loading Stata file (support.dta)
+Loading Stata (.dta) SUPPORT dataset
 
-Selecting relevant variables:
+Selecting relevant predictors
 
-age, sex, dzclass, num_co, edu
+Handling missing values
 
-slos (length of stay)
+Saving a clean CSV version
 
-totcst (total cost)
-
-hospdead (in-hospital death)
-
-Removing missing values for essential variables
-
-Saving cleaned dataset to:
-
-results/clean_data.csv
-
-📈 Exploratory Data Analysis (EDA)
+📈 2. Exploratory Data Analysis
 
 Performed in:
 
-scripts/02_analysis.R
+02_scripts/02_analysis.R
+02_scripts/03_visualizations.R
 
 
 Includes:
 
 Summary statistics
 
-Distribution of hospital costs
+Correlation matrix
 
-Mortality rate
+Distribution plots
 
-Correlation structure
+Cost patterns across demographics and disease classes
 
-Relationship plots between age, comorbidities, slos, and outcomes
+Outputs saved in:
 
-Results saved to:
+03_results/
+04_figures/
 
-results/tables/summary_overall.csv
+📉 3. Regression Modeling (Continuous Cost)
 
-🎨 Visualizations
+Script:
 
-Generated in:
-
-scripts/03_visualizations.R
-
-
-Examples:
-
-Cost distribution by mortality
-
-Boxplots of costs by disease class
-
-Scatterplots
-
-Density plots
-
-📉 Linear Regression Models (Cost Prediction)
-
-Performed in:
-
-scripts/04_regression_models.R
+02_scripts/04_regression_models.R
 
 
-Models included:
+Models include:
 
-Model 1 — Simple Regression
-totcst ~ age
+Linear regression with clinical predictors
 
-Model 2 — Multiple Regression
-totcst ~ age + sex + edu + num_co
+Model comparison (AIC, adj. R²)
 
-Model 3 — Interaction Model
-totcst ~ age * num_co + sex + edu
+Residual diagnostics
 
-Model 4 — Adding Length of Stay
-totcst ~ age * num_co + sex + edu + slos
+Interpretation of significant predictors
 
-Diagnostics
+⚕️ 4. Logistic Regression (Mortality)
 
-Residuals vs fitted
+Script:
 
-Normality of residuals
-
-Scale-location
-
-Leverage & Cook’s distance
-
-Saved to:
-
-results/figures/model3_residuals.png
-
-🔴 Logistic Regression Models (Mortality Prediction)
-
-Performed in:
-
-scripts/05_logistic_models.R
+02_scripts/05_logistic_models.R
 
 
-Models:
+Outputs include:
 
-Model 1 — Simple logistic model
-hospdead ~ age
-
-Model 2 — Multiple logistic model
-hospdead ~ age + sex + dzclass + num_co + edu
-
-Outputs:
-
-Coefficients
-
-Odds ratios + 95% confidence intervals
+Odds ratios
 
 Confusion matrix
 
-Accuracy, sensitivity, specificity
+ROC curve + AUC
 
-ROC curve
+Model accuracy and sensitivity
 
-AUC score
+📊 5. Final Report
 
-Saved to:
+Reproducible R Markdown document:
 
-results/tables/logit_odds_ratios.csv
-results/tables/logit_confusion_matrix.csv
-results/tables/logit_performance.csv
-results/tables/logit_auc.csv
-results/figures/logit_ROC.png
+05_reports/final_report.Rmd
 
-🧪 How to Reproduce the Analysis
+
+Contains:
+
+Introduction
+
+Methods
+
+Statistical models
+
+Visualizations
+
+Interpretation of results
+
+Conclusions
+
+🖥️ How to Run the Project
 1️⃣ Clone the repo
-git clone https://github.com/NforcheDivine/hospital-costs-and-mortality-R.git
+git clone https://github.com/YOUR_USERNAME/hospital-costs-and-mortality-R.git
 cd hospital-costs-and-mortality-R
 
-2️⃣ Add the dataset (not included)
+2️⃣ Open RStudio
 
-Place the SUPPORT dataset (support.dta) inside:
+From the menu:
 
-data/
+File → Open Project → hospital-costs-and-mortality-R.Rproj
 
-3️⃣ Run scripts in order:
-source("scripts/01_load_and_clean.R")
-source("scripts/02_analysis.R")
-source("scripts/03_visualizations.R")
-source("scripts/04_regression_models.R")
-source("scripts/05_logistic_models.R")
+3️⃣ Install required R packages
+install.packages(c("tidyverse", "haven", "GGally", "pROC", "broom"))
+
+4️⃣ Run scripts in order
+source("02_scripts/01_load_and_clean.R")
+source("02_scripts/02_analysis.R")
+source("02_scripts/03_visualizations.R")
+source("02_scripts/04_regression_models.R")
+source("02_scripts/05_logistic_models.R")
+
+5️⃣ Knit the full report
+
+Open:
+
+05_reports/final_report.Rmd
 
 
-All results will appear inside the results/ folder.
+Click Knit → HTML/PDF
 
-🧑‍💻 Author
+👤 Author
 
 Nforche Divine Ako
-📍 MSc Statistical Data Analysis – Ghent University
-💼 LinkedIn: https://www.linkedin.com/in/nforche-divine-ako-7a821889/
+MSc Statistical Data Analysis – Ghent University
 
-📧 Email: nforchedivine@gmail.com
+🔗 LinkedIn: https://linkedin.com/in/nforchedivine
+
+📧 nforchedivine@gmail.com
